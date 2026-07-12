@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI PDF Ingestion Pipeline</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-icon">🧠</span>
+          <div>
+            <h1>AI PDF Ingestion Pipeline</h1>
+            <p>Turn any PDF into clean, AI-ready knowledge with Gemini 2.5 Flash</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Upload Card -->
+      <section class="card upload-card">
+        <form id="upload-form">
+          <label for="file-input" class="dropzone" id="dropzone">
+            <input type="file" id="file-input" name="file" accept="application/pdf" hidden />
+            <div class="dropzone-content" id="dropzone-content">
+              <span class="dropzone-icon">📄</span>
+              <p class="dropzone-title">Click to choose a PDF, or drag it here</p>
+              <p class="dropzone-hint">Only .pdf files are supported</p>
+            </div>
+          </label>
+
+          <button type="submit" id="upload-btn" class="btn-primary" disabled>
+            <span id="upload-btn-text">Select a PDF to begin</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Processing Status Card -->
+      <section class="card status-card hidden" id="status-card">
+        <div class="spinner"></div>
+        <div class="status-stages" id="status-stages"></div>
+      </section>
+
+      <!-- Error Banner -->
+      <section class="banner banner-error hidden" id="error-banner">
+        <span>⚠️</span>
+        <p id="error-message"></p>
+      </section>
+
+      <!-- Success Banner -->
+      <section class="banner banner-success hidden" id="success-banner">
+        <span>✅</span>
+        <p>AI analysis complete! Results are shown below.</p>
+      </section>
+
+      <!-- Results -->
+      <section id="results" class="results hidden">
+
+        <!-- Section 1: Metadata -->
+        <div class="card">
+          <h2 class="section-title">📋 Document Metadata</h2>
+          <div class="metadata-grid" id="metadata-grid"></div>
+        </div>
+
+        <!-- Section 2: Markdown -->
+        <div class="card">
+          <h2 class="section-title">📝 Generated Markdown</h2>
+          <pre class="markdown-block"><code id="markdown-output"></code></pre>
+        </div>
+
+        <!-- Section 3: Summary -->
+        <div class="card">
+          <h2 class="section-title">🤖 AI Summary</h2>
+          <div class="summary-card" id="summary-output"></div>
+        </div>
+
+        <!-- Section 4: Topics -->
+        <div class="card">
+          <h2 class="section-title">🏷 Extracted Topics</h2>
+          <div class="badge-list" id="topics-output"></div>
+        </div>
+
+        <!-- Section 5: Key Points -->
+        <div class="card">
+          <h2 class="section-title">🔑 Key Points</h2>
+          <ul class="key-points-list" id="key-points-output"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Built with NestJS + Gemini 2.5 Flash — AI Engineering Course Project</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
